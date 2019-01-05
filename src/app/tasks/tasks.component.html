@@ -4,6 +4,9 @@
     <mat-icon mat-list-icon>watch_later</mat-icon>
     <h4 mat-line>{{todo.id}}</h4>
     <p mat-line> {{todo.title}} </p>
+    <span style="position:relative; right: 35x">
+        <a href="#" (click)="deleteItem(todo.id)"><mat-icon mat-list-icon>delete</mat-icon></a>
+    </span>
     <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>
