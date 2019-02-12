@@ -4,7 +4,7 @@ import { TodoService } from '../todo.service';
 
 
 export interface DialogData {
-  toto: string;
+  toto: any;
 }
 
 @Component({
@@ -30,7 +30,7 @@ export class AddtaskComponent implements OnInit {
   }
   
   onSave(data): void {
-    this.myData.addTodo(this.lastId+1, data);
+    this.myData.addTodo(this.lastId+1, { title: data.title, description: data.description});
     this.dialogRef.close();
   }
 

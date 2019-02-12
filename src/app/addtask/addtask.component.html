@@ -2,11 +2,14 @@
 
 <mat-dialog-content>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="new todo" [(ngModel)]="data.todo" #data="ngModel" >      
-      </mat-form-field>
+      <input matInput placeholder="todo Title" [(ngModel)]="data.title" #data="ngModel" >      
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="todo description" [(ngModel)]="data.description" #data="ngModel"></textarea>
+    </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSave(data.todo)">Save</button>
+  <button mat-raised-button color="primary" (click)="onSave(data)">Save</button>
 </mat-dialog-actions>

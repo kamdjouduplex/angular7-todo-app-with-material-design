@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class TodoService {
   todos: any[] = [
-    {id: 1, title: 'Hello World!'}
+    {id: 1, title: 'Hello World!', description: 'welcome to programming concept'}
   ];
   constructor() { }
 
@@ -13,8 +13,8 @@ export class TodoService {
     return this.todos;
   }
 
-  addTodo(id:number, title:string){
-    return this.todos.push({id: id, title: title});
+  addTodo(id:number, data:any, ){
+    return this.todos.push({id: id, title: data.title, description: data.description});
   }
 
   deleteTodo(id:number){
