@@ -10,9 +10,6 @@ import { Todo } from './../todo.interface';
 })
 export class EdittaskComponent implements OnInit {
 
-  todos: Todo[];
-
-  
   constructor(
     public dialogRef: MatDialogRef<EdittaskComponent>,
     @Inject(MAT_DIALOG_DATA) public passingData: Todo,
@@ -31,14 +28,7 @@ export class EdittaskComponent implements OnInit {
     let editedTodo: any = { _id: formData._id, title: formData.title, description: formData.description };
     this.myData.updateTodo(editedTodo)
       .subscribe(
-        (data: Todo) => {
-          this.myData.getTodos()
-            .subscribe(
-              (data: Todo[]) =>  this.todos = data,
-              (error: any)   => console.log(error),
-              ()             => console.log('all data gets')
-            );
-        },
+        (data: Todo) => location.reload(),
         (error) => console.log(error)
       );
     this.dialogRef.close();
