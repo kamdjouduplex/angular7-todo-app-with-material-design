@@ -1,11 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { TodoService } from '../todo.service';
+import { Todo } from './../todo.interface';
 
 
-export interface DialogData {
-  toto: any;
-}
 
 @Component({
   selector: 'app-addtask',
@@ -16,23 +14,33 @@ export class AddtaskComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddtaskComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private myData: TodoService) {}
+    private myData: TodoService
+  ){}
 
-  ngOnInit() {
-  }
+  todos = [];
 
-  todos: any[] = this.myData.getTodos();
-  lastId: number = this.todos[this.todos.length-1].id;
+    ngOnInit() {
+        this.myData.getTodos()
+        .subscribe(
+          (data: Todo[]) =>  this.todos = data,
+          (error: any)   => console.log(error),
+          ()             => console.log('all todos gets')
+        );
+    }
 
-  onCancel(): void {
-    this.dialogRef.close();
-  }
-  
-  onSave(data): void {
-    this.myData.addTodo(this.lastId+1, { title: data.title, description: data.description});
-    this.dialogRef.close();
-  }
+    onCancel(): void {
+      this.dialogRef.close();
+    }
+    
+    onSave(formData: any){
+      let newTodo: any = { title: formData.title, description: formData.description };
+      this.myData.addTodo(newTodo)
+        .subscribe(
+          (data: Todo) => location.reload(),
+          (error) => console.log(error)
+        );
+      this.dialogRef.close();
+    }
 
 }
 

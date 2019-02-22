@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Edit todo</h2>
+
+<mat-dialog-content>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="todo Title" [(ngModel)]="passingData.title" #data="ngModel" >      
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="todo description" [(ngModel)]="passingData.description" #data="ngModel"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onUpdate(passingData)">Update</button>
+</mat-dialog-actions>
